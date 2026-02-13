@@ -119,6 +119,13 @@
       margin: 10px 0;
     }
 
+    /* Happy GIF above grid */
+    .happy-gif {
+      width: min(280px, 80vw);
+      margin: 0 auto 16px;
+      display: block;
+    }
+
     /* Photo grid */
     .photo-grid {
       display: grid;
@@ -133,6 +140,15 @@
       box-shadow: 0 6px 18px rgba(0,0,0,0.12);
       object-fit: cover;
       display: block;
+    }
+
+    /* Footer text below grid */
+    .footer-text {
+      margin-top: 16px;
+      font-size: 18px;
+      font-weight: 600;
+      text-align: center;
+      color: #ff3b7a;
     }
 
     @keyframes pop {
@@ -163,20 +179,21 @@
     <!-- HINT -->
     <div class="hint" id="hint">“No” seems a bit shy 😈</div>
 
-    <!-- Result section with 2x2 photo grid -->
+    <!-- Result section with Happy GIF + 2x2 photo grid + footer text -->
     <section class="result" id="result">
       <h2>YAY! 🎉</h2>
       <img
         src="https://media.tenor.com/VhCWjJwTXNAAAAAj/happy-happy-happy.gif"
         class="happy-gif"
         alt="Happy GIF"
-/>
+      />
       <div class="photo-grid">
         <img src="0tu6SvES.jpg" alt="Photo 1">
-        <img src="ToBMBx_m.jpg" alt="Photo 2">
-        <img src="R5aWwSMn.jpg" alt="Photo 3">
-        <img src="0tu6SvES.jpg" alt="Photo 4">
+        <img src="5rYL5JXC.jpg" alt="Photo 2">
+        <img src="ToBMBx_m.jpg" alt="Photo 3">
+        <img src="R5aWwSMn.jpg" alt="Photo 4">
       </div>
+      <p class="footer-text">I can't wait to see you tomorrow 💖</p>
     </section>
   </main>
 
@@ -240,7 +257,7 @@
       document.querySelector(".art").style.display = "none"; // Pikachu GIF
       document.querySelector("h1").style.display = "none";   // Question
 
-      // Show grid + confetti
+      // Show result (Happy GIF + 2x2 photo grid + footer) + confetti
       result.style.display = "block";
       resizeConfettiCanvas();
       fullScreenConfetti();
@@ -283,5 +300,3 @@
   </script>
 </body>
 </html>
-
-
