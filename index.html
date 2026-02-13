@@ -105,10 +105,13 @@
       opacity: .7;
     }
 
+    /* Result section */
     .result {
       display: none;
       margin-top: 18px;
       animation: pop .35s ease;
+      overflow-y: auto;
+      max-height: 100vh;
     }
 
     .result h2 {
@@ -116,9 +119,19 @@
       margin: 10px 0;
     }
 
-    .fireworks {
-      width: min(380px, 90vw);
-      margin: 0 auto;
+    /* Photo grid */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .photo-grid img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+      object-fit: cover;
       display: block;
     }
 
@@ -133,13 +146,14 @@
   <canvas id="confettiCanvas"></canvas>
 
   <main class="card">
+    <!-- Initial Pikachu GIF -->
     <img
-  src="https://media1.tenor.com/m/hBtFDVt9GqMAAAAC/pikachu-pokemon.gif"
-  class="art"
-  alt="Pikachu"
-/>
+      src="https://media1.tenor.com/m/hBtFDVt9GqMAAAAC/pikachu-pokemon.gif"
+      class="art"
+      alt="Pikachu"
+    />
 
-    <h1>hi pookie will you be my valentine?</h1>
+    <h1>pookie will you be my valentine?</h1>
 
     <section class="button-zone" id="zone">
       <button id="yesBtn">Yes</button>
@@ -149,16 +163,15 @@
     <!-- HINT -->
     <div class="hint" id="hint">“No” seems a bit shy 😈</div>
 
+    <!-- Result section with 2x2 photo grid -->
     <section class="result" id="result">
       <h2>YAY! 🎉</h2>
-      <img
-        <div class="photo-grid">
-    		<img src="0tu6SvES.jpg" class="art" alt="Photo 1">
-		<img src="ToBMBx_m.jpg" class="art" alt="Photo 1">
-		<img src="YG3bcDi3.jpg" class="art" alt="Photo 1">
-		<img src="yZrs0aN9.jpg" class="art" alt="Photo 1">
-        
-      	</div>
+      <div class="photo-grid">
+        <img src="pic1.jpg" alt="Photo 1">
+        <img src="pic2.jpg" alt="Photo 2">
+        <img src="pic3.jpg" alt="Photo 3">
+        <img src="pic4.jpg" alt="Photo 4">
+      </div>
     </section>
   </main>
 
@@ -214,17 +227,22 @@
       }, 300);
     }
 
-    /* ---------- YES BUTTON GROWS ---------- */
-    let yesScale = 1;
-    function growYes() {
-      yesScale = Math.min(2.2, yesScale + 0.1);
-      yesBtn.style.transform = `translateY(-50%) scale(${yesScale})`;
-    }
+    /* ---------- YES BUTTON ---------- */
+    yesBtn.addEventListener("click", () => {
+      // Hide initial content
+      zone.style.display = "none";                // buttons
+      hint.style.display = "none";                // hint
+      document.querySelector(".art").style.display = "none"; // Pikachu GIF
+      document.querySelector("h1").style.display = "none";   // Question
+
+      // Show grid + confetti
+      result.style.display = "block";
+      resizeConfettiCanvas();
+      fullScreenConfetti();
+    });
 
     /* ---------- NO BUTTON RUNS AWAY ---------- */
-    function clamp(n, min, max) {
-      return Math.max(min, Math.min(max, n));
-    }
+    function clamp(n, min, max) { return Math.max(min, Math.min(max, n)); }
 
     function moveNo(px, py) {
       const z = zone.getBoundingClientRect();
@@ -245,8 +263,6 @@
       noBtn.style.left = newLeft + "px";
       noBtn.style.top = newTop + "px";
       noBtn.style.transform = "none";
-
-      growYes();
     }
 
     zone.addEventListener("pointermove", e => {
@@ -259,18 +275,6 @@
     });
 
     noBtn.addEventListener("click", e => e.preventDefault());
-
-    /* ---------- YES CLICK ---------- */
-    yesBtn.addEventListener("click", () => {
-      zone.style.display = "none";
-      hint.style.display = "none";     // HIDE THE HINT
-      result.style.display = "block";
-      resizeConfettiCanvas();
-      fullScreenConfetti();
-    });
   </script>
 </body>
 </html>
-
-
-
