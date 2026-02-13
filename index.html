@@ -26,7 +26,7 @@
       place-items: center;
       background: radial-gradient(circle at top, var(--bg2), var(--bg1));
       font-family: system-ui, sans-serif;
-      overflow: hidden;
+      overflow-x: hidden;
       padding: 16px;
     }
 
@@ -110,8 +110,6 @@
       display: none;
       margin-top: 18px;
       animation: pop .35s ease;
-      overflow-y: auto;
-      max-height: 100vh;
     }
 
     .result h2 {
@@ -132,6 +130,7 @@
       grid-template-columns: repeat(2, 1fr);
       gap: 12px;
       margin-top: 12px;
+      margin-bottom: 16px; /* spacing below grid */
     }
 
     .photo-grid img {
@@ -144,7 +143,7 @@
 
     /* Footer text below grid */
     .footer-text {
-      margin-top: 16px;
+      margin-top: 0;
       font-size: 18px;
       font-weight: 600;
       text-align: center;
@@ -154,6 +153,13 @@
     @keyframes pop {
       from { transform: scale(.96); opacity: 0; }
       to { transform: scale(1); opacity: 1; }
+    }
+
+    /* Responsive: single column on small screens */
+    @media (max-width: 480px) {
+      .photo-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -188,10 +194,10 @@
         alt="Happy GIF"
       />
       <div class="photo-grid">
-        <img src="0tu6SvES.jpg" alt="Photo 1">
-        <img src="5rYL5JXC.jpg" alt="Photo 2">
-        <img src="ToBMBx_m.jpg" alt="Photo 3">
-        <img src="R5aWwSMn.jpg" alt="Photo 4">
+        <img src="pic1.jpg" alt="Photo 1">
+        <img src="pic2.jpg" alt="Photo 2">
+        <img src="pic3.jpg" alt="Photo 3">
+        <img src="pic4.jpg" alt="Photo 4">
       </div>
       <p class="footer-text">I can't wait to see you tomorrow 💖</p>
     </section>
